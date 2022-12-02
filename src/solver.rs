@@ -43,6 +43,7 @@ pub trait Solver {
 }
 
 pub trait ReadExt<T> {
+    fn split_by(self, separator: u8) -> Vec<T>;
     fn split_commas(self) -> Vec<T>;
     fn split_lines(self) -> Vec<T>;
     fn split_groups(self) -> Vec<T>;
@@ -53,13 +54,17 @@ where
     R: Read,
     T: FromStr,
 {
-    fn split_commas(self) -> Vec<T> {
+    fn split_by(self, separator: u8) -> Vec<T> {
         BufReader::new(self)
-            .split(b',')
+            .split(separator)
             .flatten()
             .flat_map(String::from_utf8)
             .flat_map(|s| s.parse())
             .collect()
+    }
+
+    fn split_commas(self) -> Vec<T> {
+        self.split_by(b',')
     }
 
     fn split_lines(self) -> Vec<T> {
