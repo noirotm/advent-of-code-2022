@@ -1,7 +1,7 @@
 use std::fmt::Display;
 use std::fs::File;
 use std::io;
-use std::io::{BufRead, BufReader, Read, Seek};
+use std::io::{BufRead, BufReader, Read};
 use std::path::Path;
 use std::str::FromStr;
 use std::time::Instant;
@@ -15,7 +15,7 @@ pub trait Solver {
     type Output1: Display;
     type Output2: Display;
 
-    fn parse_input<R: Seek + Read>(&self, r: R) -> Self::Input;
+    fn parse_input<R: Read>(&self, r: R) -> Self::Input;
     fn solve_first(&self, input: &Self::Input) -> Self::Output1;
     fn solve_second(&self, input: &Self::Input) -> Self::Output2;
 
