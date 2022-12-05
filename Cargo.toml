@@ -7,6 +7,7 @@ build = "build.rs"
 
 [dependencies]
 itertools = "0.10.5"
+scan_fmt = "0.2.6"
 
 [build-dependencies]
 tinytemplate = "1.2.1"
