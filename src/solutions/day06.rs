@@ -26,7 +26,7 @@ fn solve_for_size(input: &[u8], n: usize) -> usize {
     input
         .windows(n)
         .enumerate()
-        .find(|&(i, b)| are_all_different(b))
+        .find(|&(_, b)| are_all_different(b))
         .map(|(i, _)| i + n)
         .expect("not empty")
 }
