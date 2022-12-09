@@ -70,8 +70,7 @@ impl FileSystem {
                         let idx = fs.nodes.len() - 1;
 
                         if let Some(&parent_idx) = current_node_stack.last() {
-                            let e = fs.children.entry(parent_idx).or_default();
-                            e.push(idx);
+                            fs.children.entry(parent_idx).or_default().push(idx);
                         }
 
                         current_node_stack.push(idx);
@@ -84,8 +83,7 @@ impl FileSystem {
                 let idx = fs.nodes.len() - 1;
 
                 if let Some(&parent_idx) = current_node_stack.last() {
-                    let e = fs.children.entry(parent_idx).or_default();
-                    e.push(idx);
+                    fs.children.entry(parent_idx).or_default().push(idx);
                 }
             }
         }
