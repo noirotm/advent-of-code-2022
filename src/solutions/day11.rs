@@ -37,12 +37,12 @@ impl Solver for Problem {
         let mut monkeys = input.clone();
 
         // find LCM for all monkeys (they're prime, so it's just the product)
-        let gcm = monkeys.iter().map(|m| m.test_divisible_by).product::<u64>();
+        let lcm = monkeys.iter().map(|m| m.test_divisible_by).product::<u64>();
 
         // wrapping each integer to its modulo works, because all the operations either
         // preserve the modulo via multiplying, or add a fixed amount so modulo will stay the same
         for _ in 0..10000 {
-            evaluate_round(&mut monkeys, |v| v % gcm);
+            evaluate_round(&mut monkeys, |v| v % lcm);
         }
 
         monkeys
